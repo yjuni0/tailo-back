@@ -1,26 +1,59 @@
-## 📖 목차
 
-1. [🔎 프로젝트 소개](#-프로젝트-소개)
-2. [🎯 프로젝트 기간](#-프로젝트-기간)
-3. [🧑‍💻 팀원 소개](#-팀원-소개)
-4. [🧑‍💻 역할 분담](#-역할-분담)
-5. [🚀 주요 기능](#-주요-기능)
-6. [⚙️ 기술 스택](#️-기술-스택)
-7. [📃 API 설계서](#-api-설계서)
-8. [🛠 ERD](#-erd)
-9. [🛠 아키텍처](#-아키텍처)
-10. [❓ 기술적 의사결정](#-기술적-의사결정)
-11. [📈 성능 개선](#-성능-개선)
-12. [🚨 트러블 슈팅](#-트러블-슈팅)
+<br/>
 
-## 🔎 프로젝트 소개
--
+<div align="center">
+  <h1>Tailo</h1>
+  <p>반려동물 기반 SNS 플랫폼</p>
+</div>
 
-## 🎯 프로젝트 기간
-- 1차 MVP 개발 기간 : 2025.04.13 ~ 2025.04.30
+<br/>
 
-<details>
-  <summary>🎇 프로젝트 실행 방법</summary>
+<div align="center">
+  <img src="./assets/Tailo-Logo-removebg-preview.png" alt="소개이미지" style="border-radius: 10px; width: 200px;"/>
+</div>
+
+<br/>
+
+<div align="center">
+  <a href="https://taillo-ten.vercel.app/login">홈페이지</a>
+</div>
+
+---
+
+## ✍️ 프로젝트 개요
+
+- **프로젝트명:** Tailo (반려동물 기반 SNS 플랫폼)
+- **프로젝트 기간:** 2025.04.12 ~ 2025.04.30
+
+---
+
+## ✍️ 프로젝트 소개
+
+### 프로젝트 배경
+ - 반려동물과의 소중한 일상을 기록하고, 이를 다른 반려인들과 공유할 수 있는 전용 소셜 플랫폼을 만들고자 하였습니다. <br> 단순한 사진 공유를 넘어, 반려동물 중심의 커뮤니티 형성을 목표로 하였습니다.
+
+---
+
+## 📌 주요 기능
+
+### **1. 사용자 기능**
+- 소셜 로그인
+- 프로필 정보 조회 / 수정 기능
+  - 프로필 이미지 업로드
+
+### **2. 피드**
+- 게시글 작성 / 수정 / 삭제 기능
+  - 이미지 및 해시태그 첨부 가능
+- 피드별 댓글 및 좋아요 기능
+
+### **3. 소셜 네트워크 기능**
+- 사용자 간 팔로우 / 언팔로우 / 차단 기능
+- 피드 및 사용자 검색 기능
+
+### **4. 1:1 실시간 채팅 기능**
+- 실시간 메시지 전송 및 수신
+
+---
 
 ## 🧑‍💻 팀원 소개
 
@@ -28,89 +61,69 @@
 |:-----------:|:---------------:|
 | 오예준      | BE              | 
 | 정누리      | BE              | 
-| 정하승      | 팀장 & FE        | 
+| 정하승      | FE              | 
 
+---
 
-## 🧑‍💻 역할 분담
-
-| **이름**    | **역할**        | 
-|:-----------:|:---------------:|
-| 오예준      | 기능2              | 
-| 정누리      | 기능3              | 
-
-## 🚀 주요 기능
-### 📌 주 기능 1
-- 부 기능 1
-- 부 기능 2
-- 부 기능 3
-### 📌 주 기능 2
-- 부 기능 1
-- 부 기능 2
-- 부 기능 3
-### 📌 주 기능 3
-- 부 기능 1
-- 부 기능 2
-- 부 기능 3
--
 ## ⚙️ 기술 스택
-- Backend : Java 17, Spring Boot 3.4.0, Spring Data JPA, Spring Security
-- Database : MySQL, Redis
-- Test Tool : Postman
-- DevOps : Docker, Git, GitAction
-- ETC : InteliJ
 
-## 📃 API 설계서
--
-## 🛠 ERD
--
-## 🛠 아키텍처
--
+<div align="center">
+  <img src="./assets/2025-04-29%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98.png" alt="아키텍처" style="border-radius: 10px;"/>
+</div>
 
-## ❓ 기술적 의사결정
+<table>
+  <thead>
+    <tr>
+      <th>분류</th>
+      <th>기술 스택</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>프론트엔드</td>
+      <td>
+        <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white"/>
+        <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white"/>
+        <img src="https://img.shields.io/badge/React Hook Form-EC5990?style=flat&logo=reacthookform&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Tanstack Query-FF4154?style=flat&logo=reactquery&logoColor=white"/>
+      </td>
+    </tr>
+    <tr>
+      <td>백엔드</td>
+      <td>
+        <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat&logo=spring-boot&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Spring%20Security-6DB33F?style=flat&logo=spring-security&logoColor=white"/>
+        <img src="https://img.shields.io/badge/QueryDSL-000000?style=flat&logo=none&logoColor=white"/>
+        <img src="https://img.shields.io/badge/JPA-59666C?style=flat&logo=hibernate&logoColor=white"/>
+      </td>
+    </tr>
+    <tr>
+      <td>데이터베이스</td>
+      <td>
+        <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Redis-DC382D?style=flat&logo=redis&logoColor=white"/>
+      </td>
+    </tr>
+    <tr>
+      <td>인프라</td>
+      <td>
+        <img src="https://img.shields.io/badge/AWS_EC2-FF9900?style=flat&logo=amazon-ec2&logoColor=white"/>
+        <img src="https://img.shields.io/badge/GCP-4285F4?style=flat&logo=google-cloud&logoColor=white" />
+        <img src="https://img.shields.io/badge/Ubuntu-20.04-E95420?style=flat&logo=ubuntu&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Nginx-1.18.0-009639?style=flat&logo=nginx&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Tomcat-F8DC75?style=flat&logo=apache-tomcat&logoColor=black"/>
+        <img src="https://img.shields.io/badge/Elasticsearch-005571?style=flat&logo=elasticsearch&logoColor=white" /?
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<details>
-<summary> 1️⃣ Spring Boot 3.4.0과 JAVA 17 버전 선택</summary>
 
-</details>
+---
 
-<details>
-  <summary> 2️⃣ MySQL (RDBMS)</summary>
+## 📂 기타
 
-</details>
+- [FrontEnd 개발 트래커](https://github.com/orgs/Tailo-Project/projects/5)
+- [BackEnd 개발 트래커](https://github.com/orgs/Tailo-Project/projects/3/views/2)
 
-<details>
-
-  <summary> 3️⃣ </summary>
-
-</details>
-
-<details>
-  <summary> 4️⃣ </summary>
-
-</details>
-
-
-<details>
-
-  <summary> 5️⃣ </summary>
-
-</details>
-
-<details>
-  <summary> 6️⃣ </summary>
-
-</details>
-
-<details>
-    <summary> 7️⃣ </summary>
-
-</details>
-
-<details>
-      <summary> 8️⃣ </summary>
-
-</details>
-
-## 📈 성능 개선
-
-## 🚨 트러블 슈팅
+---
