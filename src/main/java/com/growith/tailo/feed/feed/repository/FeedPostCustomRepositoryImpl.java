@@ -3,6 +3,7 @@ package com.growith.tailo.feed.feed.repository;
 import com.growith.tailo.common.exception.ResourceNotFoundException;
 import com.growith.tailo.feed.comment.entity.QComment;
 import com.growith.tailo.feed.feed.dto.response.FeedPostResponse;
+import com.growith.tailo.feed.feed.entity.FeedPost;
 import com.growith.tailo.feed.feed.entity.QFeedPost;
 import com.growith.tailo.feed.feed.entity.QFeedPostHashtag;
 import com.growith.tailo.feed.feedImage.entity.QFeedPostImage;
@@ -183,10 +184,68 @@ public class FeedPostCustomRepositoryImpl implements FeedPostCustomRepository {
                         )
                 )).get(feedId);
 
-        if (result == null) {
+        // 1. FeedPost 기본 정보
+        FeedPost feed = jpaQueryFactory
+                .selectFrom(feedPost)
+                .join(feedPost.author).fetchJoin()
+                .where(feedPost.id.eq(feedId))
+                .fetchOne();
+
+        if (feed == null) {
             throw new ResourceNotFoundException("해당 피드가 존재하지 않습니다.");
         }
 
-        return result;
+        // 이미지 URL 목록
+        List<String> imageUrls = jpaQueryFactory
+                .select(feedImage.imageUrl)
+                .from(feedImage)
+                .where(feedImage.feedPost.id.eq(feedId))
+                .fetch();
+
+        // 해시태그 목록
+        List<String> hashtagList = jpaQueryFactory
+                .select(hashtags.hashtag)
+                .from(feedPostHashtag)
+                .join(feedPostHashtag.hashtags)
+                .where(feedPostHashtag.feedPost.id.eq(feedId))
+                .fetch();
+
+        // 좋아요 개수
+        Long likeCount = jpaQueryFactory
+                .select(postLike.count())
+                .from(postLike)
+                .where(postLike.feedPost.id.eq(feedId))
+                .fetchOne();
+
+        // 댓글 개수
+        Long commentCount = jpaQueryFactory
+                .select(comment.count())
+                .from(comment)
+                .where(comment.feedPost.id.eq(feedId))
+                .fetchOne();
+
+        // 현재 유저의 좋아요 여부
+        Boolean likedByUser = jpaQueryFactory
+                .selectOne()
+                .from(postLike)
+                .where(postLike.feedPost.id.eq(feedId)
+                        .and(postLike.member.eq(member)))
+                .fetchFirst() != null;
+
+        return new FeedPostResponse(
+                feed.getId(),
+                feed.getContent(),
+                feed.getAuthor().getAccountId(),
+                feed.getAuthor().getNickname(),
+                feed.getAuthor().getProfileImageUrl(),
+                imageUrls,
+                hashtagList,
+                feed.getCreatedAt(),
+                feed.getUpdatedAt(),
+                likeCount,
+                commentCount,
+                likedByUser
+        );
+
     }
 }

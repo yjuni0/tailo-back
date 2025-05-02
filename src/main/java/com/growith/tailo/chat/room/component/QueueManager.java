@@ -1,18 +1,18 @@
 package com.growith.tailo.chat.room.component;
 
 import com.growith.tailo.chat.message.component.ChatConsumer;
-import com.growith.tailo.common.config.RabbitMQConfig;
-import com.growith.tailo.common.exception.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.AmqpAdmin;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Slf4j
 @Component
@@ -36,10 +36,25 @@ public class QueueManager {
 
     @Value("${spring.rabbitmq.chat.queue}")
     private String queueName;
+
+    @Autowired
+    public QueueManager(AmqpAdmin amqpAdmin,
+                        @Qualifier("chatExchange") TopicExchange chatExchange,
+                        RabbitTemplate rabbitTemplate,
+                        ChatConsumer chatConsumer) {
+        this.amqpAdmin = amqpAdmin;
+        this.chatExchange = chatExchange;
+        this.rabbitTemplate = rabbitTemplate;
+        this.chatConsumer = chatConsumer;
+    }
+
     // 큐 생성 메서드
     public void createChatQueue(Long roomId) {
         String dynamicQueueName = queueName + roomId;
-        log.info("{} 큐 존재 여부 : {}",dynamicQueueName,!existQueue(dynamicQueueName));
+        log.info("{} 큐 존재 여부 : {}", dynamicQueueName, !existQueue(dynamicQueueName));
+
+
+
         // 큐가 이미 존재하는지 확인
         if (!existQueue(dynamicQueueName)) {
             // 큐 이름을 동적으로 생성
@@ -58,6 +73,7 @@ public class QueueManager {
 
         }
     }
+
 
     public void deleteQueue(String queueName){
         amqpAdmin.deleteQueue(queueName);
